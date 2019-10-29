@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Trip</title>
+</head>
+
+<body>
+    {% for message in messages %}
+    {{message}}
+    {% endfor %}
+    <div>
+        <h1>Hello {{user.first_name}}! Lets edit your trip!</h1>
+        <a href="/logout">Logout</a>
+        <a href="/dashboard">Dashboard</a>
+    </div>
+    <div>
+        <form action="/update" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="trip_id" value="{{trip.id}}">
+            <div class="col">
+                <p>Destination:</p>
+                <input type="text" name="destination" value="{{trip.destination}}">
+            </div>
+            <div class="col">
+                <p>Start Date:</p>
+                <input type="date" name="start_date" value="{{ trip.start_date|date:'Y-m-d'}}">
+            </div>
+            <div class="col">
+                <p>End Date:</p>
+                <input type="date" name="end_date" value="{{trip.end_date|date:'Y-m-d'}}">
+            </div>
+            <div class="col">
+                <p>Plan:</p>
+                <textarea name="plan">{{trip.plan}}</textarea>
+            </div>
+            <div class="col"><input type="submit" value="Make changes"></div>
+            <div class="col"><a href="/dashboard">Cancel</a></div>
+        </form>
+    </div>
+
+</body>
+
+</html>

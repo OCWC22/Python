@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+ #left, #right{display: inline-block; width:600px;vertical-align: top;}
+
+</style>
+<body>
+    <h1> Welcome! Let's travel!</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <div id="left">
+        <form action="/register_process" method='POST'>
+            {% csrf_token %}
+            <h1>Register</h1>
+            <p>Email</p>
+            <input type="text" name="email">
+            <p>First name</p>
+            <input type='text' name='first_name'>
+            <p>Last name</p>
+            <input type='text' name="last_name">
+            <p>password</p>
+            <input type='password' name='password'>
+            <p>confirm password</p>
+            <input type='password' name='confirmpassword'>
+            <br>
+            <button type='submit'>Register</button>
+        </form>
+    </div>
+    <div id="right">
+        <form action="/login_process" method='POST'>
+            {% csrf_token %}
+            <h1>Login</h1>
+            <p>Email</p>
+            <input type="text" name="email">
+            <p>Password</p>
+            <input type="password" name="password">
+            <button type='submit'>Login</button>
+        </form>
+    </div>
+</body>
+
+</html>
